@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-question quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .qz-w {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .qz-pb {
+            background: #1a8754;
+            border-radius: 15px;
+            height: 20px;
+            margin-bottom: 40px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .qz-pf {
+            height: 100%;
+            background: linear-gradient(45deg, #3b996c 25%, transparent 25%, transparent 50%, #28a745 50%, #28a745 75%, transparent 75%, transparent);
+            background-size: 20px 20px;
+            animation: move 1s linear infinite;
+            transition: width 0.5s ease;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .qz-pt {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        @keyframes move {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 20px 0;
+            }
+        }
+
+        .qz-c {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 300px;
+        }
+
+        .qz-t {
+            font-size: 22px;
+            font-weight: bold;
+            color: #232629;
+            margin-bottom: 35px;
+            line-height: 1.4;
+        }
+
+        .qz-q {
+            background: linear-gradient(135deg, #4c63d2, #5a67d8);
+            color: white;
+            font-size: 26px;
+            font-weight: 700;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            line-height: 1.3;
+            box-shadow: 0 4px 15px rgba(76, 99, 210, 0.3);
+        }
+
+        .qz-o {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .qz-b {
+            background: #d2d4d5;
+            border: 3px solid #8b8e91;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #495057;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qz-b:hover {
+            background: #007bff;
+            color: white;
+            border-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .qz-l {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .qz-ls {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .qz-lt {
+            font-size: 20px;
+            color: #6c757d;
+            font-weight: 600;
+        }
+
+        .qz-f {
+            display: none;
+        }
+
+        .qz-ft {
+            font-size: 32px;
+            font-weight: 700;
+            color: #28a745;
+            margin-bottom: 25px;
+        }
+
+        .qz-fm {
+            font-size: 21px;
+            color: #495057;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .qz-fb {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 12px;
+            font-size: 22px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            min-width: 200px;
+        }
+
+        .qz-fb:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+            color: white;
+        }
+
+        .qz-fb.no {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+        }
+
+        .qz-fb.no:hover {
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
+        }
+
+        .qz-foot {
+            margin-top: 50px;
+            padding: 30px;
+            background: #343a40;
+            color: #adb5bd;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .qz-foot p {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .qz-foot a {
+            color: #17a2b8;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .qz-foot a:hover {
+            color: #138496;
+        }
+
+        .qz-disc {
+            font-size: 12px;
+            color: #97a5b1;
+            margin-top: 20px;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .qz-w {
+                padding: 15px;
+            }
+
+            .qz-c {
+                padding: 25px;
+            }
+
+            .qz-t {
+                font-size: 20px;
+            }
+
+            .qz-q {
+                font-size: 22px;
+                padding: 20px;
+            }
+
+            .qz-b {
+                font-size: 18px;
+                padding: 18px;
+                min-height: 75px;
+            }
+
+            .qz-ft {
+                font-size: 26px;
+            }
+
+            .qz-fm {
+                font-size: 18px;
+            }
+
+            .qz-fb {
+                font-size: 18px;
+                padding: 18px 30px;
+                min-width: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .qz-t {
+                font-size: 18px;
+            }
+
+            .qz-q {
+                font-size: 20px;
+                padding: 18px;
+            }
+
+            .qz-b {
+                font-size: 16px;
+                min-height: 80px;
+            }
+
+            .qz-pb {
+                height: 18px;
+            }
+
+            .qz-pt {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="qz-w">
+        <div class="qz-pb">
+            <div class="qz-pf" style="width: 20%;">
+                <span class="   qz-pt">20%</span>
+            </div>
+        </div>
+
+        <div id="questions" class="qz-c">
+            <div class="qz-t qz-intro">Take this quick 5-question quiz to discover a gentle method that may support ear
+                comfort.</div>
+
+            <div id="q1" class="qz-s">
+                <div class="qz-q">Do you sometimes hear ringing, buzzing, or similar sounds in your ears?</div>
+                <div class="qz-o">
+                    <div class="qz-b" data-next="q2">Yes</div>
+                    <div class="qz-b" data-next="q2">No</div>
+                </div>
+            </div>
+
+            <div id="q2" class="qz-s" style="display: none;">
+                <div class="qz-q">When did you first notice any changes in your hearing or ear sensations?</div>
+                <div class="qz-o">
+                    <div class="qz-b" data-next="q3">Around my 30s</div>
+                    <div class="qz-b" data-next="q3">Around my 40s</div>
+                    <div class="qz-b" data-next="q3">50 or older</div>
+                    <div class="qz-b" data-next="q3">I don't remember</div>
+                </div>
+            </div>
+
+            <div id="q3" class="qz-s" style="display: none;">
+                <div class="qz-q">How would you describe the frequency or intensity of those ear sounds?</div>
+                <div class="qz-o">
+                    <div class="qz-b" data-next="q4">Mild – comes and goes</div>
+                    <div class="qz-b" data-next="q4">Moderate – noticeable most of the day</div>
+                    <div class="qz-b" data-next="q4">Severe – constant and very disturbing</div>
+                </div>
+            </div>
+
+            <div id="q4" class="qz-s" style="display: none;">
+                <div class="qz-q">Have you explored any approaches to manage your ear sensations?</div>
+                <div class="qz-o">
+                    <div class="qz-b" data-next="q5">Yes – medications, supplements, or other methods</div>
+                    <div class="qz-b" data-next="q5">No – I haven't tried anything yet</div>
+                </div>
+            </div>
+
+            <div id="q5" class="qz-s" style="display: none;">
+                <div class="qz-q">How much are these ear sensations affecting your day-to-day routine?</div>
+                <div class="qz-o">
+                    <div class="qz-b" data-next="loading">Just annoying, but manageable</div>
+                    <div class="qz-b" data-next="loading">Affecting my sleep and mood</div>
+                    <div class="qz-b" data-next="loading">It's been very persistent</div>
+                    <div class="qz-b" data-next="loading">It's mild, but I want it gone</div>
+                </div>
+            </div>
+
+            <div class="qz-l">
+                <div class="qz-ls"></div>
+                <div class="qz-lt">Checking your answers...</div>
+            </div>
+        </div>
+
+        <div class="qz-f">
+            <div class="qz-c">
+                <div class="qz-ft">🎉 Thanks for completing the quiz!</div>
+                <div class="qz-fm">We’ll now show you a video that shares a gentle, home-based method inspired by
+                    natural comfort routines. Many people have reported feeling more at ease after trying it.</div>
+                <div class="qz-fm"><strong>Can you commit a few minutes to watch the video until the end?</strong></div>
+                <div class="qz-o">
+                    <a href="{{RTK_PRECLICK_LINK}}" class="qz-fb">Yes, Show Me The Video</a>
+                    <a href="{{RTK_PRECLICK_LINK}}" class="qz-fb no">Maybe later</a>
+                </div>
+
+                <a href="{{RTK_PRECLICK_LINK}}" class="mt-3">
+                    <img src="vick.webp" width="100%" alt="">
+                </a>
+            </div>
+        </div>
+
+        <div class="qz-foot">
+            <p>
+                <span style="color: #3366ff;">
+                    <strong>
+                        <a style="color: #3366ff;" href="home/contact.html">Contact </a>
+                        <a style="color: #3366ff;" href="home/terms.html">Terms of Service&nbsp;</a>
+                        <a style="color: #3366ff;" href="home/privacy.html">Privacy</a>
+                        <a style="color: #3366ff;" href="home/return.html">Return Policy</a>
+                        <a style="color: #3366ff;" href="home/shipping.html">Shipping Disclaimer</a>
+
+                    </strong>
+                </span>
+            </p>
+            <div class="qz-disc">
+                <p>
+                    This site is not a part of Google™ website or network of sites such as Youtube™ or any company owned
+                    by Google™ or Youtube™.
+                    Additionally, this website is not endorsed by Google™ Youtube™ Inc. in any way. Google™ is a
+                    trademark for all their respective companies.
+                    <br />
+                    <br />
+
+                    FDA Compliance
+                    The information on this website has not been evaluated by the Food & Drug Administration or any
+                    other medical body. We do not aim to diagnose, treat, cure or prevent any illness or disease.
+                    Information is shared for educational purposes only. You should always consult your doctor before
+                    acting on any content on this website, especially if you are pregnant, nursing, taking medication or
+                    have a medical condition.
+                    <br />
+                    <br />
+
+                    Marketing Disclosure: This website is a marketplace. As such, you should know that the owner has a
+                    monetary connection to the product and services advertised on the site. The owner receives payment
+                    whenever a qualified lead is referred but that is the extent of it.
+                    <br />
+                    <br />
+
+                    Advertising Disclosure: This website and the products & services referred to on the site are
+                    advertising marketplaces. This website is an advertisement and not a news publication. Any
+                    photographs of persons used on this site are models. The owner of this site and the products and
+                    services referred to on this site only provides a service where consumers can obtain and compare.
+                    <br />
+                    <br />
+
+                    Please Read Our Testimonial Disclaimer Here
+                    Some names and personal identifying information on this site have been changed to protect the
+                    privacy of individuals. No individual result should be seen as typical.
+                <div class="elementor-widget-container">
+                    <p><strong>CNPJ:</strong> {{CNPJ}} — {{COMPANY_NAME}}</p>
+                    <p>All Rights Reserved</p>
+                </div>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="/main.js"></script>
+    <!-- <script type="text/javascript" src="{{RTK_PRETRACK_SCRIPT_URL}}"></script> -->
+    <script>
+        $(document).ready(function () {
+            let currentStep = 1;
+            const totalSteps = 5;
+            const loadingMessages = [
+                "Reviewing your answers...",
+                "Looking for the right resources...",
+                "Almost there...",
+                "Loading the video...",
+                "Done! You're all set."
+            ];
+
+            // Handle option clicks
+            $(document).on('click', '.qz-b', function () {
+                const nextStep = $(this).data('next');
+
+                if (nextStep === 'loading') {
+                    showFakeLoading();
+                } else {
+                    showNextQuestion(nextStep);
+                }
+            });
+
+            function showNextQuestion(nextId) {
+                // Show loading first
+                $('.qz-s').hide();
+                $('.qz-l').show();
+                $('.qz-lt').text('Loading next question...');
+
+                setTimeout(function () {
+                    $('.qz-l').hide();
+                    $('#' + nextId).show();
+                    currentStep++;
+                    updateProgressBar();
+                }, 500);
+            }
+
+            function showFakeLoading() {
+                $('.qz-s').hide();
+                $('.qz-l').show();
+
+                let messageIndex = 0;
+
+                function showNextMessage() {
+                    if (messageIndex < loadingMessages.length) {
+                        $('.qz-lt').text(loadingMessages[messageIndex]);
+                        messageIndex++;
+                        setTimeout(showNextMessage, 1000);
+                    } else {
+                        // Show final result
+                        $('#questions').hide();
+                        $('.qz-l').hide();
+                        $('.qz-intro').hide(); // Hide initial title
+                        $('.qz-f').show();
+                        updateProgressBar(100);
+                    }
+                }
+
+                showNextMessage();
+            }
+
+            function updateProgressBar(percentage) {
+                if (!percentage) {
+                    percentage = (currentStep / totalSteps) * 100;
+                }
+
+                $('.qz-pf').css('width', percentage + '%');
+                $('.qz-pt').text(Math.round(percentage) + '%');
+            }
+
+            // Smooth scroll to top on question change
+            function scrollToTop() {
+                $('html, body').animate({
+                    scrollTop: $('.qz-w').offset().top
+                }, 300);
+            }
+        });
+    </script>
+</body>
+
+</html>
