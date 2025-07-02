@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="/main.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        header {
+            background-color: #c40000;
+            color: white;
+            padding: 10px 20px;
+            /* Altura um pouco menor */
+            display: flex;
+            justify-content: center;
+            /* Centraliza o conteúdo horizontalmente */
+            align-items: center;
+            min-height: 55px;
+            /* Altura mínima ajustada */
+            position: relative;
+            /* Necessário para posicionar os ícones absolutamente */
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            /* Letra um pouco menor */
+            margin: 0;
+            text-align: center;
+            /* Garante a centralização do texto dentro do h1 */
+            white-space: nowrap;
+            /* Evita que o título quebre linha */
+        }
+
+        header .icon-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            /* Tamanho do ícone */
+            display: flex;
+            /* Para alinhar o ícone perfeitamente */
+            align-items: center;
+            position: absolute;
+            /* Posicionamento absoluto para os ícones */
+            top: 50%;
+            transform: translateY(-50%);
+            /* Centraliza verticalmente */
+        }
+
+        header .search-icon {
+            left: 20px;
+            /* Posiciona o ícone de busca à esquerda */
+        }
+
+        .hamburger-icon {
+            right: 20px;
+            /* Posiciona o ícone do hambúrguer à direita */
+        }
+
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* Media Queries para responsividade */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 15px;
+                min-height: 50px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header .icon-link {
+                font-size: 1.1rem;
+            }
+
+            header .search-icon {
+                left: 15px;
+            }
+
+            .hamburger-icon {
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 8px 10px;
+                min-height: 45px;
+            }
+
+            header h1 {
+                font-size: 1.3rem;
+            }
+
+            header .icon-link {
+                font-size: 1rem;
+            }
+
+            header .search-icon {
+                left: 10px;
+            }
+
+            .hamburger-icon {
+                right: 10px;
+            }
+
+            main {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="javascript:history.back();" class="icon-link search-icon" aria-label="Back to Home"><i
+                class="fas fa-home"></i></a>
+        <h1>Contact</h1>
+        <a href="#" class="icon-link hamburger-icon" aria-label="Menu"><i class="fas fa-bars"></i></a>
+    </header>
+
+    <main>
+        <h2>Do you have questions or need help with your order?</h2>
+        <p>Please contact our customer service team by sending us a message to the email address below.</p>
+
+        <h3>Get In Touch</h3>
+        <p><strong>Email address:</strong> support@getaudizen.com</p>
+        <p><strong>Order status support:</strong> (323) 372-9102</p>
+
+        <p>A customer service agent will reply to you in 48 hours or less. Your message will be handled by a real person
+            who is here to take care of your problems and answer your questions.</p>
+
+        <p>Your satisfaction is guaranteed and very important to us, so please let us know how we can best serve you!
+        </p>
+
+        <p>Please remember to include the following with your return package:</p>
+        <ul>
+            <li>Your order number</li>
+            <li>Your name</li>
+            <li>Your email address</li>
+        </ul>
+
+        <p><strong>Note:</strong> Shipping cost is your responsibility.</p>
+    </main>
+</body>
+
+</html>

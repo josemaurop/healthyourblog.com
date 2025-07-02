@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- TROCAR POR PRE LOAD DO VTURB -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #c40000;
+            /* Vermelho principal do header */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 55px;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        header .icon-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        header .search-icon {
+            left: 20px;
+        }
+
+        .hamburger-icon {
+            right: 20px;
+        }
+
+        /* Faixa de Notícias - Ajustes */
+        .news-marquee {
+            background-color: #990000;
+            /* Vermelho mais escuro que o header */
+            color: white;
+            /* Texto branco */
+            padding: 5px 0;
+            /* Mais delicada, altura reduzida */
+            font-size: 0.85em;
+            /* Fonte um pouco menor */
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            /* Garante que o texto fique centralizado após parar */
+            display: flex;
+            /* Usar flex para centralizar o span interno */
+            justify-content: center;
+            align-items: center;
+            min-height: 30px;
+            /* Altura mínima para a faixa */
+        }
+
+        .news-marquee span {
+            display: inline-block;
+            /* Necessário para a animação */
+            animation: marquee-animation 30s linear forwards;
+            /* Mais lenta e para no final */
+            white-space: nowrap;
+            /* Garante que o texto não quebre linha */
+        }
+
+        @keyframes marquee-animation {
+            0% {
+                transform: translateX(100%);
+            }
+
+            /* Começa fora da tela à direita */
+            99% {
+                transform: translateX(0);
+            }
+
+            /* Move até estar visível e alinhado */
+            100% {
+                transform: translateX(0);
+            }
+
+            /* Fica parado e centralizado */
+        }
+
+        main {
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .author-info {
+            display: flex;
+            justify-content: center;
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .author-info strong {
+            color: #c40000;
+        }
+
+        /* Estilos do Footer */
+        footer {
+            background-color: #f1f1f1;
+            color: #333;
+            padding: 30px 20px;
+            font-size: 0.9em;
+            text-align: left;
+            max-width: 900px;
+            margin: 40px auto 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        footer .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: flex-start;
+        }
+
+        footer .footer-links a {
+            color: #c40000;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        footer p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Media Queries para responsividade */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 15px;
+                min-height: 50px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header .icon-link {
+                font-size: 1.1rem;
+            }
+
+            header .search-icon {
+                left: 15px;
+            }
+
+            .hamburger-icon {
+                right: 15px;
+            }
+
+            /* Ajustes para a faixa de notícias em telas menores */
+            .news-marquee {
+                font-size: 0.8em;
+                padding: 4px 0;
+                min-height: 25px;
+            }
+
+            .news-marquee span {
+                /* Pode ajustar a duração da animação para telas menores se desejar */
+                animation-duration: 20s;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 8px 10px;
+                min-height: 45px;
+            }
+
+            header h1 {
+                font-size: 1.3rem;
+            }
+
+            header .icon-link {
+                font-size: 1rem;
+            }
+
+            header .search-icon {
+                left: 10px;
+            }
+
+            .hamburger-icon {
+                right: 10px;
+            }
+
+            main {
+                padding: 15px;
+            }
+
+            .author-info {
+                font-size: 0.8em;
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .h1-mobile {
+                font-size: 20px !important;
+            }
+
+            footer {
+                padding: 15px 10px;
+                font-size: 0.8em;
+            }
+
+            footer .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+            }
+
+            footer .footer-links a {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="icon-link search-icon" aria-label="Search"><i class="fas fa-search"></i></a>
+        <h1>Health</h1>
+        <a href="#" class="icon-link hamburger-icon" aria-label="Menu"><i class="fas fa-bars"></i></a>
+    </header>
+
+    <div class="news-marquee">
+        <span>Daily updates on wellness and health - Daily updates on wellness and health</span>
+    </div>
+
+    <main>
+        <div style="text-align: center; font-family: Arial, sans-serif; max-width: 700px; margin: auto;">
+            <p style="font-style: italic; font-size: 14px; margin-bottom: 10px;">
+                Doctor reveals simple trick causing buzz…
+            </p>
+            <h1 class="h1-mobile" style="font-size: 24px; font-weight: 700; line-height: 1.4;">
+                <span style="color: red;">Tap Play to Discover the ‘Vick Trick’ </span> <br>People Are Using to Soothe
+                Ear Ringing Naturally
+            </h1>
+            <div id="strap-player-container" style="margin: 0px auto;width: 100%;max-width: 404px;">
+                <!-- TROCAR POR EMBED DO VTURB -->
+            </div>
+            <p style="margin-bottom: 100px;" class="author-info">Breaking News · Updated 30 minutes ago · <span
+                    id="current-date"></span></p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="contact.html">Contact</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="return.html">Return Policy</a>
+            <a href="shipping.html">Shipping Disclaimer</a>
+        </div>
+        <p>This site is not a part of Google™ website or network of sites such as Youtube™ or any company owned by
+            Google™
+            or Youtube™. Additionally, this website is not endorsed by Google™ Youtube™ Inc. in any way. Google™ is a
+            trademark for all their respective companies.</p>
+        <p><strong>FDA Compliance:</strong> The information on this website has not been evaluated by the Food & Drug
+            Administration or any other medical body. We do not aim to diagnose, treat, cure or prevent any illness or
+            disease. Information is shared for educational purposes only. You should always consult your doctor before
+            acting
+            on any content on this website, especially if you are pregnant, nursing, taking medication or have a medical
+            condition.</p>
+        <p><strong>Marketing Disclosure:</strong> This website is a marketplace. As such, you should know that the owner
+            has
+            a monetary connection to the product and services advertised on the site. The owner receives payment
+            whenever a
+            qualified lead is referred but that is the extent of it.</p>
+        <p><strong>Advertising Disclosure:</strong> This website and the products & services referred to to on the site
+            are
+            advertising marketplaces. This website is an advertisement and not a news publication. Any photographs of
+            persons
+            used on this site are models. The owner of this site and the products and services referred to on this site
+            only
+            provides a service where consumers can obtain and compare.</p>
+        <p><strong>Please Read Our Testimonial Disclaimer Here:</strong> Some names and personal identifying information
+            on
+            this site have been changed to protect the privacy of individuals. No individual result should be seen as
+            typical.
+        </p>
+        <p><strong>CNPJ:</strong> {{CNPJ}} — {{COMPANY_NAME}}
+        </p>
+        <p>&copy; {{COMPANY_NAME}}
+            2025. All Rights Reserved</p>
+    </footer>
+    <!-- <script src="https://rtk.wellbloghealth.com/pretrack.js?rtkcmpid=685e06decc46ca6a2e79c326"></script> -->
+    <script src="/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dateSpan = document.getElementById('current-date');
+
+            const today = new Date();
+
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = today.toLocaleDateString('en-US', options);
+
+            dateSpan.textContent = `${formattedDate}`;
+        });
+    </script>
+</body>
+
+</html>
